@@ -1,0 +1,11 @@
+utill\ConexionBD.class
+Beans\Novela.class
+com\mycompany\mavenproject1\JakartaRestConfiguration.class
+utill\PublicarNovela.class
+utill\ListarNovelas.class
+utill\Recorrido.class
+utill\LoginServlet.class
+utill\DatabaseConnection.class
+Beans\Usuario.class
+com\mycompany\mavenproject1\resources\JakartaEE11Resource.class
+utill\LeerDatosDesdeBaseDeDatos.class

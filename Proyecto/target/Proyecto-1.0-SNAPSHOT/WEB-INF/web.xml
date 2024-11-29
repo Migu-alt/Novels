@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="6.0" xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd">
+    <servlet>
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>utill.LoginServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PublicarNovela</servlet-name>
+        <servlet-class>utill.PublicarNovela</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Recorrido</servlet-name>
+        <servlet-class>utill.Recorrido</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ListarNovelas</servlet-name>
+        <servlet-class>utill.ListarNovelas</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/LoginServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Recorrido</servlet-name>
+        <url-pattern>/Recorrido</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PublicarNovela</servlet-name>
+        <url-pattern>/PublicarNovela</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListarNovelas</servlet-name>
+        <url-pattern>/ListarNovelas</url-pattern>
+    </servlet-mapping>
+
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+</web-app>

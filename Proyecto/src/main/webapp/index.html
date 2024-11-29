@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Full Width Pics - Start Bootstrap Template</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+        <script>
+        function ejecutarFuncion() {
+            // Realiza una solicitud GET al servlet
+            fetch('/Recorrido')
+                .then(response => response.text())
+                .then(data => {
+                    console.log('Respuesta del servidor:', data);
+                    alert('Respuesta: ' + data);
+                })
+                .catch(error => console.error('Error:', error));
+        }
+    </script>
+        <style>
+        .card {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            overflow: hidden;
+            text-decoration: none;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        .card img {
+            object-fit: cover;
+        }
+
+        .card-title {
+            margin: 0;
+            padding: 10px;
+            background-color: #f8f9fa;
+            font-size: 18px;
+            text-align: center;
+            font-weight: bold;
+        }
+    </style>
+    </head>
+    <body>
+        <!-- Responsive navbar-->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="#!">Novels</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item"><a class="nav-link" aria-current="page" href="Novelas/agregarNovelas.html">Agregar Novela</a></li>
+                        <li class="nav-item"><a class="nav-link" href="registro/login.html">Login</a></li>
+                        <li class="nav-item"><a class="nav-link" href="registro/singup.html">sing up</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Content section-->
+        <div class="container my-4">
+            <button class="btn btn-primary" onclick="ejecutarFuncion()">Cargar Novelas</button>
+        </div>
+            <div class="container my-5" id="novelasContainer">
+                <button id="cargarNovelasBtn">Cargar novelas</button>
+               <div class="col-md-4">
+                    <a href="detalles.html" class="card">
+                        <img src="${novela.imagen}" class="img-fluid" alt="${novela.nombre}">
+                        <div class="card-title">nombre</div>
+                        <div class="card-text">sinopsis</div>
+                        
+                    </a>
+                </div>  
+        
+            </div>
+
+    <script>
+        // Función para cargar las novelas desde el archivo JSON local
+        function cargarNovelas() {
+            fetch('novelas.json')  // Aquí hacemos referencia al archivo JSON local
+                .then(response => response.json())  // Convierte la respuesta en JSON
+                .then(novelas => {
+                    const container = document.getElementById('novelasContainer');
+                    container.innerHTML = ''; // Limpiar contenido previo
+
+                    // Iterar sobre las novelas y construir las tarjetas
+                    novelas.forEach(novela => {
+                        const cardHTML = `
+                            <div class="col-md-4">
+                                <a href="detalles.html" class="card">
+                                    <img src="${novela.imagen}" class="img-fluid" alt="${novela.nombre}">
+                                    <div class="card-body">
+                                        <h5 class="card-title">${novela.nombre}</h5>
+                                        <p class="card-text">${novela.sinopsis}</p>
+                                    </div>
+                                </a>
+                            </div>
+                        `;
+                        container.innerHTML += cardHTML; // Añadir la tarjeta a la interfaz
+                    });
+                })
+                .catch(error => console.error('Error al cargar las novelas:', error));  // En caso de error
+        }
+
+        // Llamar a la función para cargar las novelas cuando se carga la página
+        window.onload = cargarNovelas;
+    </script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    
+        <!-- Footer-->
+        <footer class="py-5 bg-dark">
+            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2023</p></div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+    </body>
+</html>

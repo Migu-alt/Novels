@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
+-->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Novelas</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+    <div class="container my-5">
+        <div class="row" id="novelasContainer">
+            <!-- Aquí se mostrarán las novelas -->
+        </div>
+    </div>
+
+    <script>
+        // Función para cargar las novelas desde el archivo JSON local
+        function cargarNovelas() {
+            fetch('/Proyecto/Recorrido')  // Aquí hacemos referencia al archivo JSON local
+                .then(response => response.json())  // Convierte la respuesta en JSON
+                .then(novelas => {
+                    const container = document.getElementById('novelasContainer');
+                    container.innerHTML = ''; // Limpiar contenido previo
+
+                    // Iterar sobre las novelas y construir las tarjetas
+                    novelas.forEach(novela => {
+                        const cardHTML = `
+                            <div class="col-md-4">
+                                <a href="detalles.html" class="card">
+                                    <img src="${novela.imagen}" class="img-fluid" alt="${novela.nombre}">
+                                    <div class="card-body">
+                                        <h5 class="card-title">${novela.nombre}</h5>
+                                        <p class="card-text">${novela.sinopsis}</p>
+                                    </div>
+                                </a>
+                            </div>
+                        `;
+                        container.innerHTML += cardHTML; // Añadir la tarjeta a la interfaz
+                    });
+                })
+                .catch(error => console.error('Error al cargar las novelas:', error));  // En caso de error
+        }
+
+        // Llamar a la función para cargar las novelas cuando se carga la página
+        window.onload = cargarNovelas;
+    </script>
+</html>
